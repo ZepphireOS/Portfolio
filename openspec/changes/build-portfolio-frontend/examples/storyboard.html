@@ -1,0 +1,638 @@
+<title>Portfolio Datasheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#eef1ea;
+    --surface:#e2e6da;
+    --surface-2:#d6dbc9;
+    --ink:#151d16;
+    --ink-soft:#4b5348;
+    --line:#a9b09c;
+    --line-soft:#c7cdba;
+    --accent:#d9631a;
+    --accent-ink:#fff7ef;
+    --trace:#356651;
+    --cert:#7a5ba8;
+    --danger:#a1372a;
+    --edu1:#356651;
+    --edu2:#1f6f8b;
+    --cert1:#7a5ba8;
+    --cert2:#a8577a;
+    --cert3:#5f6fa0;
+    --xp1:#a5672c;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12150f; --surface:#1a1f16; --surface-2:#232a1c;
+      --ink:#eaeee2; --ink-soft:#a8b09b; --line:#3c4535; --line-soft:#2a3225;
+      --accent:#f0873c; --accent-ink:#1c1002; --trace:#5fa184; --cert:#b6a0e0; --danger:#e0796a;
+      --edu1:#5fa184; --edu2:#5bb6d6; --cert1:#b6a0e0; --cert2:#d693ae; --cert3:#9aabe0; --xp1:#d99a5c;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12150f; --surface:#1a1f16; --surface-2:#232a1c;
+    --ink:#eaeee2; --ink-soft:#a8b09b; --line:#3c4535; --line-soft:#2a3225;
+    --accent:#f0873c; --accent-ink:#1c1002; --trace:#5fa184; --cert:#b6a0e0; --danger:#e0796a;
+    --edu1:#5fa184; --edu2:#5bb6d6; --cert1:#b6a0e0; --cert2:#d693ae; --cert3:#9aabe0; --xp1:#d99a5c;
+  }
+
+  *{box-sizing:border-box;}
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    margin:0; padding-inline:clamp(16px, 4vw, 48px); padding-block: 28px 80px; line-height:1.55;
+  }
+  a{color:inherit;}
+  .mono{font-family:'IBM Plex Mono', ui-monospace, monospace;}
+  .cap{ text-transform:uppercase; letter-spacing:.09em; }
+  button{ font: inherit; }
+
+  .sheet{ max-width: 1040px; margin: 0 auto; border: 1.5px solid var(--line); background: var(--surface); position: relative; }
+  .sheet::before, .sheet::after{ content:""; position:absolute; width:14px; height:14px; pointer-events:none; }
+  .sheet::before{ top:-1px; left:-1px; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
+  .sheet::after{ bottom:-1px; right:-1px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }
+
+  .preliminary{
+    position:absolute; top: 14px; right: -46px; transform: rotate(6deg);
+    border: 1.5px dashed var(--danger); color: var(--danger); font-size: 11px; padding: 3px 30px;
+    letter-spacing:.14em; background: color-mix(in srgb, var(--danger) 8%, transparent); white-space:nowrap; z-index:2;
+  }
+  @media (max-width: 620px){ .preliminary{ right: -20px; font-size: 9px; padding: 2px 18px; } }
+
+  .titleblock{
+    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap: 20px;
+    padding: 28px clamp(18px,3vw,36px) 20px; border-bottom: 1.5px solid var(--line);
+  }
+  .titleblock h1{
+    font-family:'Big Shoulders Display', sans-serif; font-weight: 800; font-size: clamp(2.6rem, 7vw, 4.6rem);
+    line-height: .88; margin: 0; letter-spacing: -0.01em; text-wrap: balance;
+  }
+  .role-line{ margin-top:8px; font-size: 13px; color: var(--ink-soft); letter-spacing:.08em; }
+  .meta-table{ font-size: 11px; display:grid; grid-template-columns: auto auto; gap: 3px 14px; color: var(--ink-soft); text-align:right; }
+  .meta-table span:first-child{ color: var(--ink); }
+
+  /* sticky scrollspy nav, same visual language as before */
+  .tabs{
+    display:flex; overflow-x:auto; border-bottom: 1.5px solid var(--line); background: var(--surface-2);
+    position: sticky; top: 0; z-index: 4;
+  }
+  .tab{
+    font-family:'IBM Plex Mono', monospace; font-size: 12px; letter-spacing:.06em; padding: 13px 18px;
+    border-right: 1px solid var(--line-soft); border-top:none; border-left:none; border-bottom:none;
+    background: transparent; color: var(--ink-soft); cursor:pointer; white-space:nowrap; display:flex; gap:8px; align-items:baseline;
+  }
+  .tab .idx{ color: var(--ink-soft); }
+  .tab[aria-current="true"]{ background: var(--bg); color: var(--ink); border-bottom: 2px solid var(--accent); margin-bottom:-1.5px; }
+  .tab[aria-current="true"] .idx{ color: var(--accent); }
+  .tab:hover{ color: var(--ink); }
+
+  .grid-ground{
+    background-image: linear-gradient(var(--line-soft) 1px, transparent 1px), linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: 28px 28px; background-position: -1px -1px;
+  }
+
+  .panel{ padding: clamp(20px, 3vw, 40px); scroll-margin-top: 46px; border-bottom: 1px solid var(--line-soft); }
+  .panel:last-child{ border-bottom:none; }
+
+  .section-head{ display:flex; align-items:baseline; gap:12px; margin-bottom: 22px; }
+  .section-head .num{ font-family:'Big Shoulders Display'; font-weight:800; font-size:2.4rem; color: var(--line); line-height:1; }
+  .section-head h2{ margin:0; font-size: 1.5rem; font-weight:600; letter-spacing:-.01em; }
+
+  /* about */
+  .about-layout{ display:grid; grid-template-columns: 220px 1fr; gap: 32px; }
+  @media (max-width: 640px){ .about-layout{ grid-template-columns: 1fr; } }
+  .figbox{
+    border: 1.5px dashed var(--line); aspect-ratio: 1 / 1;
+    background: repeating-linear-gradient(135deg, var(--line-soft), var(--line-soft) 1px, transparent 1px, transparent 9px);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:6px; padding:14px; color: var(--ink-soft);
+  }
+  .figbox .fig-label{ font-size:11px; }
+  .figbox .fig-caption{ font-size:10px; max-width: 15ch; }
+  p{ max-width: 62ch; }
+  .lede{ font-size:1.05rem; }
+  .facts{ margin-top:20px; display:grid; gap:8px; font-size:13px; }
+  .facts div{ display:flex; gap:8px; }
+  .facts .k{ color:var(--ink-soft); width:88px; flex-shrink:0; }
+
+  .socials{ display:flex; gap:10px; margin-top:22px; }
+  .social-btn{
+    width:38px; height:38px; border:1px solid var(--line); background:var(--surface-2);
+    display:flex; align-items:center; justify-content:center; color:var(--ink); text-decoration:none;
+  }
+  .social-btn svg{ width:18px; height:18px; fill:currentColor; }
+  .social-btn:hover{ border-color:var(--accent); color:var(--accent); }
+
+  /* shared interactive tile: hover lift + press shift, used by skills/timeline/projects */
+  .interactive{ cursor:pointer; border:1px solid var(--line); background:var(--bg); text-align:left; color:var(--ink); transition: box-shadow .15s ease, transform .05s ease, border-color .15s ease; }
+  .interactive:hover{ border-color:var(--accent); box-shadow: 3px 3px 0 0 var(--line-soft); }
+  .interactive:active{ transform: translate(2px,2px); box-shadow: none; }
+  .interactive:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+  /* skills */
+  .skill-groups{ display:grid; gap:16px; }
+  .skill-group{ display:flex; gap:14px; }
+  @media (max-width:560px){ .skill-group{ flex-direction:column; gap:6px; } }
+  .skill-group-label{ font-size:11px; color:var(--ink-soft); width:170px; flex-shrink:0; padding-top:6px; }
+  .chips{ display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'IBM Plex Mono'; font-size:11.5px; padding:5px 10px; }
+
+  /* timeline: education/certs left, experience right, shared time axis center */
+  .tl-header-row{ display:grid; grid-template-columns: 1fr 64px 1fr; align-items:end; margin-bottom:10px; gap:8px; }
+  .tl-col-title{ margin:0; font-size:11px; letter-spacing:.07em; color:var(--ink-soft); font-weight:600; }
+  .tl-col-title.right{ text-align:right; }
+  .tl-axis-label{ text-align:center; font-size:9.5px; color:var(--ink-soft); }
+  .tl-grid{ display:grid; grid-template-columns: 1fr 64px 1fr; gap:0; }
+  .tl-col{ position:relative; min-height: 760px; }
+  .tl-col.tl-edu{ display:flex; }
+  .tl-col.tl-xp{ display:flex; }
+  .tl-lanes{ position:relative; flex:1; }
+  .tl-edu .tl-lanes{ margin-left:auto; }
+  .tl-axis{ position:relative; border-left:1.5px solid var(--line); border-right:1.5px solid var(--line); min-height:760px; }
+  .tl-tick{ position:absolute; left:0; right:0; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono'; font-size:9.5px; color:var(--ink-soft); transform:translateY(-50%); }
+  .tl-tick::before, .tl-tick::after{ content:""; position:absolute; top:50%; width:6px; height:1px; background:var(--line); }
+  .tl-tick::before{ left:-6px; } .tl-tick::after{ right:-6px; }
+  .tl-now{ position:absolute; left:-6px; right:-6px; border-top:1.5px dashed var(--accent); transform:translateY(-50%); }
+  .tl-now-label{ position:absolute; right:calc(100% + 8px); top:50%; transform:translateY(-50%); font-size:9px; color:var(--accent); white-space:nowrap; }
+
+  .tl-bar{
+    position:absolute; border:1.5px solid var(--bar-color, var(--ink)); background: color-mix(in srgb, var(--bar-color, var(--ink)) 16%, var(--bg));
+    padding:5px 8px; overflow:hidden; text-align:left; cursor:pointer; min-height:34px;
+    display:flex; flex-direction:column; justify-content:center; gap:1px; width: min(230px, 92%);
+    transition: box-shadow .15s ease, transform .05s ease;
+  }
+  .tl-edu .tl-bar{ right:0; border-right-width:4px; }
+  .tl-xp .tl-bar{ left:0; border-left-width:4px; }
+  .tl-bar:hover{ box-shadow: 3px 3px 0 0 var(--line-soft); }
+  .tl-bar:active{ transform: translate(2px,2px); box-shadow:none; }
+  .tl-bar:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .tl-bar .tl-tag{ font-family:'IBM Plex Mono'; font-size:8.5px; letter-spacing:.05em; color: var(--bar-color, var(--ink)); }
+  .tl-bar .tl-name{ font-weight:600; font-size:12.5px; line-height:1.2; }
+  .tl-bar .tl-span{ font-family:'IBM Plex Mono'; font-size:9.5px; color:var(--ink-soft); }
+  .tl-bar.tl-est .tl-span::after{ content:" (est. start)"; font-style:italic; }
+
+  .tl-point{ position:absolute; width:11px; height:11px; border-radius:50%; background:var(--accent); border:2px solid var(--bg); box-shadow:0 0 0 1.5px var(--accent); cursor:pointer; transform:translate(-50%,-50%); left:0; }
+  .tl-edu .tl-point{ left:auto; right:0; transform:translate(50%,-50%); }
+
+  .tl-legend{ display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; font-size:11px; color:var(--ink-soft); }
+  .tl-legend span{ display:inline-flex; align-items:center; gap:5px; }
+  .tl-legend i{ width:10px; height:10px; display:inline-block; border:1.5px solid; }
+
+  @media (max-width: 760px){
+    .tl-header-row, .tl-grid{ grid-template-columns: 1fr; }
+    .tl-axis{ display:none; }
+    .tl-col{ min-height:0; }
+    .tl-col.tl-edu, .tl-col.tl-xp{ display:block; margin-bottom:24px; }
+    .tl-lanes{ position:static !important; }
+    .tl-bar, .tl-point{ position:static !important; width:100% !important; margin-bottom:10px; transform:none !important; }
+    .tl-point{ display:none; }
+  }
+
+  /* projects */
+  .proj-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 18px; }
+  .proj-card{ display:flex; flex-direction:column; padding:0; overflow:hidden; }
+  .proj-fig{ aspect-ratio: 16/9; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:center; position:relative; }
+  .proj-fig.no-image{ background: repeating-linear-gradient(135deg, var(--line-soft), var(--line-soft) 1px, transparent 1px, transparent 9px); }
+  .proj-fig.has-image{ background: linear-gradient(135deg, var(--trace), var(--ink)); }
+  .proj-fig svg{ width:34px; height:34px; color:var(--ink-soft); }
+  .proj-fig.has-image svg{ color: var(--accent-ink); opacity:.9; }
+  .proj-fig .fig-note{ position:absolute; bottom:6px; right:8px; font-size:9px; letter-spacing:.06em; color:var(--ink-soft); }
+  .proj-fig.has-image .fig-note{ color:var(--accent-ink); opacity:.85; }
+  .proj-body{ padding:14px 16px 16px; }
+  .proj-title{ font-weight:600; font-size:14.5px; margin-bottom:6px; }
+  .proj-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+
+  footer.sheet-footer{
+    display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; padding: 12px clamp(18px,3vw,36px);
+    border-top:1.5px solid var(--line); font-size:10.5px; color:var(--ink-soft); letter-spacing:.05em;
+  }
+
+  /* floating widget slot */
+  .agent-toggle{
+    position:fixed; right:20px; bottom:20px; background:var(--surface); border:1.5px solid var(--line);
+    padding:9px 14px; display:flex; align-items:center; gap:8px; font-family:'IBM Plex Mono'; font-size:11px; cursor:pointer; color:var(--ink); z-index:5;
+  }
+  .agent-toggle .dot{ width:7px; height:7px; border-radius:50%; background:var(--ink-soft); }
+  .agent-toggle:hover{ border-color:var(--accent); }
+  .agent-panel{ position:fixed; right:20px; bottom:66px; width:min(300px, 80vw); background:var(--bg); border:1.5px solid var(--line); z-index:5; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+  .agent-panel[hidden]{ display:none; }
+  .agent-panel .ap-head{ padding:10px 12px; border-bottom:1px solid var(--line); font-family:'IBM Plex Mono'; font-size:11px; display:flex; justify-content:space-between; color:var(--ink-soft); }
+  .agent-panel .ap-body{ padding:14px; font-size:12.5px; color:var(--ink-soft); }
+  .agent-panel .bubble{ background:var(--surface); border:1px solid var(--line-soft); padding:8px 10px; margin-top:10px; font-size:12.5px; }
+
+  /* detail modal, shared by skills/timeline/projects */
+  .modal-backdrop{ position:fixed; inset:0; background: color-mix(in srgb, var(--ink) 45%, transparent); display:flex; align-items:center; justify-content:center; padding:20px; z-index:10; }
+  .modal-backdrop[hidden]{ display:none; }
+  .modal{ background:var(--bg); border:1.5px solid var(--line); max-width:460px; width:100%; max-height:85vh; overflow:auto; }
+  .modal-fig{ aspect-ratio: 21/9; display:flex; align-items:center; justify-content:center; position:relative; border-bottom:1.5px solid var(--line); }
+  .modal-fig.no-image{ background: repeating-linear-gradient(135deg, var(--line-soft), var(--line-soft) 1px, transparent 1px, transparent 9px); }
+  .modal-fig.has-image{ background: linear-gradient(135deg, var(--trace), var(--ink)); }
+  .modal-fig svg{ width:40px; height:40px; color:var(--ink-soft); }
+  .modal-fig.has-image svg{ color:var(--accent-ink); }
+  .modal-close{ position:absolute; top:10px; right:10px; width:28px; height:28px; border:1px solid var(--line); background:var(--bg); cursor:pointer; font-family:'IBM Plex Mono'; }
+  .modal-body{ padding:20px; }
+  .modal-kind{ font-family:'IBM Plex Mono'; font-size:10.5px; letter-spacing:.08em; color:var(--accent); }
+  .modal-title{ font-size:1.2rem; font-weight:700; margin:4px 0 2px; }
+  .modal-org{ color:var(--ink-soft); font-size:13px; }
+  .modal-dates{ font-family:'IBM Plex Mono'; font-size:11px; color:var(--ink-soft); margin-top:6px; }
+  .modal ul{ margin:14px 0 0; padding-left:18px; font-size:14px; }
+  .modal li{ margin-bottom:6px; }
+  .modal .template-note{ font-style:italic; color:var(--ink-soft); font-size:12.5px; margin-top:12px; }
+
+  h2, h1 { text-wrap: balance; }
+</style>
+
+<div class="sheet">
+  <div class="preliminary mono">PRELIMINARY — LAYOUT FOR REVIEW</div>
+
+  <div class="titleblock">
+    <div>
+      <h1>Bharath<br>Santhosh</h1>
+      <div class="role-line mono cap">Technical AI Engineer — Cloud-Native &amp; Agentic Systems</div>
+    </div>
+    <div>
+      <div class="meta-table mono">
+        <span>DOC</span><span>BS-PORTFOLIO-01</span>
+        <span>REV</span><span>2026.09</span>
+        <span>SHEET</span><span id="sheetIndicator">1 OF 4</span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="tabs mono" aria-label="Portfolio sections">
+    <button class="tab" data-target="about" aria-current="true"><span class="idx">01</span>ABOUT</button>
+    <button class="tab" data-target="skills"><span class="idx">02</span>SKILLS</button>
+    <button class="tab" data-target="timeline"><span class="idx">03</span>TIMELINE</button>
+    <button class="tab" data-target="projects"><span class="idx">04</span>PROJECTS</button>
+  </nav>
+
+  <div class="grid-ground">
+
+    <section class="panel" id="about">
+      <div class="section-head"><span class="num mono">01</span><h2>About</h2></div>
+      <div class="about-layout">
+        <div class="figbox">
+          <div class="fig-label mono">FIG. 01</div>
+          <div class="fig-caption">Portrait — drop your photo here</div>
+        </div>
+        <div>
+          <p class="lede">Technical AI Engineer with cross-functional agile delivery experience. Masters in Artificial Intelligence, with hands-on work building full-stack, cloud-native applications — combining ML/deep-learning expertise with production engineering across Python/FastAPI backends, React frontends, and cloud-native architecture on AWS.</p>
+          <p>Experienced directing AI-assisted development within a structured, company-sanctioned workflow: applying code review, testing, and architectural oversight to catch and correct AI-generated errors and keep output production-quality. Comfortable bridging model development with scalable, deployed systems.</p>
+          <div class="facts mono">
+            <div><span class="k cap">Focus</span><span>Agentic systems · full-stack · MLOps</span></div>
+            <div><span class="k cap">Currently</span><span>AI Engineer @ Miracle Software Systems</span></div>
+          </div>
+          <div class="socials">
+            <a class="social-btn" href="https://github.com/" aria-label="GitHub" title="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.1c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.7 1.25 3.36.96.1-.74.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.78 1.07.78 2.16v3.2c0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+            </a>
+            <a class="social-btn" href="https://www.linkedin.com/in/bharathsanthosh" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+            </a>
+            <a class="social-btn" href="mailto:bharathsanth123@gmail.com" aria-label="Email" title="Email">
+              <svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4Zm2 2v.4l8 5.6 8-5.6V6H4Zm16 2.4-7.4 5.2a1 1 0 0 1-1.2 0L4 8.4V18h16V8.4Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="skills">
+      <div class="section-head"><span class="num mono">02</span><h2>Skills</h2></div>
+      <p style="margin-bottom:18px; font-size:13px; color:var(--ink-soft);">Click any skill — each opens a note you can fill in later with where you used it and how you learned it.</p>
+      <div class="skill-groups" id="skillGroups">
+        <div class="skill-group"><div class="skill-group-label mono cap">Languages</div><div class="chips">
+          <button class="chip interactive" data-skill="Python">Python</button><button class="chip interactive" data-skill="TypeScript">TypeScript</button><button class="chip interactive" data-skill="SQL">SQL</button><button class="chip interactive" data-skill="C++">C++</button><button class="chip interactive" data-skill="MATLAB">MATLAB</button>
+        </div></div>
+        <div class="skill-group"><div class="skill-group-label mono cap">AI / Agentic</div><div class="chips">
+          <button class="chip interactive" data-skill="Gemini API">Gemini API</button><button class="chip interactive" data-skill="MCP">MCP</button><button class="chip interactive" data-skill="AWS Bedrock">AWS Bedrock</button><button class="chip interactive" data-skill="YOLOv12">YOLOv12</button>
+        </div></div>
+        <div class="skill-group"><div class="skill-group-label mono cap">ML &amp; Data</div><div class="chips">
+          <button class="chip interactive" data-skill="PyTorch">PyTorch</button><button class="chip interactive" data-skill="TensorFlow">TensorFlow</button><button class="chip interactive" data-skill="Keras">Keras</button><button class="chip interactive" data-skill="Scikit-Learn">Scikit-Learn</button><button class="chip interactive" data-skill="Pandas">Pandas</button>
+        </div></div>
+        <div class="skill-group"><div class="skill-group-label mono cap">Web &amp; Backend</div><div class="chips">
+          <button class="chip interactive" data-skill="FastAPI">FastAPI</button><button class="chip interactive" data-skill="SQLAlchemy">SQLAlchemy</button><button class="chip interactive" data-skill="React">React</button><button class="chip interactive" data-skill="shadcn/ui">shadcn/ui</button><button class="chip interactive" data-skill="Tailwind CSS">Tailwind CSS</button>
+        </div></div>
+        <div class="skill-group"><div class="skill-group-label mono cap">Cloud &amp; DevOps</div><div class="chips">
+          <button class="chip interactive" data-skill="AWS">AWS</button><button class="chip interactive" data-skill="GCP">GCP</button><button class="chip interactive" data-skill="Cloudflare Workers">Cloudflare Workers</button><button class="chip interactive" data-skill="GitLab CI/CD">GitLab CI/CD</button>
+        </div></div>
+        <div class="skill-group"><div class="skill-group-label mono cap">Testing &amp; Tooling</div><div class="chips">
+          <button class="chip interactive" data-skill="Playwright">Playwright</button><button class="chip interactive" data-skill="pytest">pytest</button><button class="chip interactive" data-skill="Docker">Docker</button><button class="chip interactive" data-skill="uv">uv</button>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="panel" id="timeline">
+      <div class="section-head"><span class="num mono">03</span><h2>Timeline</h2></div>
+      <p style="margin-bottom:14px; font-size:13px; color:var(--ink-soft);">Education &amp; certificates on the left, experience on the right, both read against one shared time axis — bar length follows the real start–end span.</p>
+      <div class="tl-header-row">
+        <h3 class="tl-col-title">Education &amp; Certificates</h3>
+        <span></span>
+        <h3 class="tl-col-title right">Experience</h3>
+      </div>
+      <div class="tl-grid">
+        <div class="tl-col tl-edu"><div class="tl-lanes" id="eduLanes"></div></div>
+        <div class="tl-axis" id="axisCol"></div>
+        <div class="tl-col tl-xp"><div class="tl-lanes" id="xpLanes"></div></div>
+      </div>
+      <div class="tl-legend mono">
+        <span><i style="border-color:var(--edu1); background:color-mix(in srgb, var(--edu1) 16%, var(--bg));"></i>Degree</span>
+        <span><i style="border-color:var(--cert1); background:color-mix(in srgb, var(--cert1) 16%, var(--bg));"></i>Certificate</span>
+        <span><i style="border-color:var(--xp1); background:color-mix(in srgb, var(--xp1) 16%, var(--bg));"></i>Role</span>
+        <span><i style="border-radius:50%; border-color:var(--accent); background:var(--accent);"></i>One-day event</span>
+      </div>
+    </section>
+
+    <section class="panel" id="projects">
+      <div class="section-head"><span class="num mono">04</span><h2>Projects</h2></div>
+      <p style="margin-bottom:18px; font-size:13px; color:var(--ink-soft);">Some have a real screenshot; the rest use a small type icon instead of a blank box until one's added.</p>
+      <div class="proj-grid">
+        <button class="proj-card interactive" data-modal="proj-gmail">
+          <div class="proj-fig has-image"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm1 3v10h14V7l-7 4.5L5 7Zm.8-1 6.2 4 6.2-4H5.8Z"/></svg><span class="fig-note mono">SAMPLE SCREENSHOT</span></div>
+          <div class="proj-body"><div class="proj-title">Gmail Invoice Extraction Pipeline</div><div class="proj-tags"><span class="chip mono" style="pointer-events:none">GCP</span><span class="chip mono" style="pointer-events:none">Gemini</span></div></div>
+        </button>
+        <button class="proj-card interactive" data-modal="proj-phoenix">
+          <div class="proj-fig no-image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h4M4 4v4M20 4h-4M20 4v4M4 20h4M4 20v-4M20 20h-4M20 20v-4"/><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/></svg><span class="fig-note mono">NO IMAGE YET</span></div>
+          <div class="proj-body"><div class="proj-title">Project Phoenix — Racecar Vision</div><div class="proj-tags"><span class="chip mono" style="pointer-events:none">YOLOv12</span></div></div>
+        </button>
+        <button class="proj-card interactive" data-modal="proj-churn">
+          <div class="proj-fig no-image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="6" r="1.8" fill="currentColor" stroke="none"/><circle cx="5" cy="18" r="1.8" fill="currentColor" stroke="none"/><circle cx="13" cy="12" r="1.8" fill="currentColor" stroke="none"/><circle cx="20" cy="6" r="1.8" fill="currentColor" stroke="none"/><circle cx="20" cy="18" r="1.8" fill="currentColor" stroke="none"/><path d="M5 6l8 6M5 18l8-6M13 12l7-6M13 12l7 6"/></svg><span class="fig-note mono">NO IMAGE YET</span></div>
+          <div class="proj-body"><div class="proj-title">Telco Customer Churn Prediction</div><div class="proj-tags"><span class="chip mono" style="pointer-events:none">XGBoost</span><span class="chip mono" style="pointer-events:none">ANN</span></div></div>
+        </button>
+        <button class="proj-card interactive" data-modal="proj-genre">
+          <div class="proj-fig no-image"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="10" width="2.4" height="4"/><rect x="6" y="6" width="2.4" height="12"/><rect x="10" y="2" width="2.4" height="20"/><rect x="14" y="7" width="2.4" height="10"/><rect x="18" y="10" width="2.4" height="4"/></svg><span class="fig-note mono">NO IMAGE YET</span></div>
+          <div class="proj-body"><div class="proj-title">Music Genre Detection</div><div class="proj-tags"><span class="chip mono" style="pointer-events:none">CNN</span></div></div>
+        </button>
+        <button class="proj-card interactive" data-modal="proj-spam">
+          <div class="proj-fig no-image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h18v14H3V5Zm0 0 9 7 9-7"/><path d="M3 19 9 13M21 19l-6-6" stroke-dasharray="2 2"/></svg><span class="fig-note mono">NO IMAGE YET</span></div>
+          <div class="proj-body"><div class="proj-title">Email Spam Detection</div><div class="proj-tags"><span class="chip mono" style="pointer-events:none">NLP</span></div></div>
+        </button>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="sheet-footer mono">
+    <span>PORTFOLIO-DATASHEET · DRAFT LAYOUT</span>
+    <span>NEXT: SUBSTITUTE FIGURES, CRITIQUE TYPE &amp; COLOR</span>
+  </footer>
+</div>
+
+<button class="agent-toggle" id="agentToggle" type="button"><span class="dot"></span>DIGITAL TWIN</button>
+<div class="agent-panel" id="agentPanel" hidden>
+  <div class="ap-head"><span>DIGITAL TWIN — STATUS: OFFLINE</span><span>MOCKUP</span></div>
+  <div class="ap-body">
+    Placeholder only — no agent is wired up yet.
+    <div class="bubble">"Ask me about my work on agentic pipelines or cloud-native ML systems."</div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" id="modalBox"></div>
+</div>
+
+<script>
+  const MODALS = {
+    'xp-miracle': {kind:'Experience', title:'AI Engineer', org:'Miracle Software Systems, Inc · Novi, MI', dates:'Jun 2026 – Present', bullets:[
+      'Full-stack engineering with DevOps and AI agents — integrated FastAPI/SQLAlchemy backends, React/Tailwind frontends, and AWS services across internal projects.',
+      'Built containerized Playwright/pytest suites as a validation layer for AI-generated code, surfacing 80% of failures before manual review.',
+      'Identified edge cases outside given tasks during local testing and revised plans accordingly.'], icon:'building'},
+    'xp-eastwest': {kind:'Experience', title:'Mechatronic Engineer', org:'East & West Robotics LLC · Al Khan, UAE', dates:'Dec 2022 – Dec 2023', bullets:[
+      'Analyzed sensor and operational data from automated parking systems to identify failure patterns.',
+      'Troubleshot electromechanical and control-system problems, restoring functionality across installations.'], icon:'building'},
+    'xp-algurg': {kind:'Experience', title:'Intern', org:'Al Gurg Automation and Control · Dubai, UAE', dates:'Dec 2021 – Feb 2022', bullets:[
+      'Assisted design, development, and programming of PLC control panels for industrial automation.'], icon:'building'},
+    'xp-exponential': {kind:'Experience', title:'Intern', org:'Exponential Digital Solutions · Trivandrum, India', dates:'Mar 2021 – May 2021', bullets:[
+      'Developed Intelligent Process Automation workflows using Microsoft Power Automate.'], icon:'building'},
+    'ed-umich': {kind:'Education', title:'M.S. Artificial Intelligence', org:'University of Michigan–Dearborn', dates:'May 2026', bullets:['GPA 3.97 / 4.0'], icon:'cap'},
+    'ed-sydney': {kind:'Education', title:'B.E. Honors, Mechatronics', org:'University of Sydney', dates:'Dec 2022', bullets:['GPA 3.01 / 4.0 (converted) · Honors Class II, Division 2'], icon:'cap'},
+    'cr-adk': {kind:'Certificate', title:'Master Google ADK — Agent Development Kit', org:'Udemy', dates:'Mar 2026 – Apr 2026', bullets:['Agent architecture, development, tool integration, and deployment.'], icon:'ribbon'},
+    'cr-hackathon': {kind:'Competition', title:'Visual AI Hackathon — 1st Place, Intermediate', org:'University of Michigan–Dearborn · sponsored by Voxel51', dates:'Jan 31, 2025', bullets:['Computer-vision home-security concept with facial recognition and spoof detection, presented live to judges.'], icon:'ribbon'},
+    'cr-mit': {kind:'Certificate', title:'Applied Data Science Program', org:'MIT Professional Education', dates:'Jan 2024 – Apr 2024', bullets:['Deep learning and time-series analysis; capstone project; team placed 7th in the concluding hackathon.'], icon:'ribbon'},
+    'cr-coursera': {kind:'Certificate', title:'Machine Learning', org:'Coursera: Stanford University', dates:'Nov 2023 – Jan 2024', bullets:['Foundational supervised-learning coursework and applications.'], icon:'ribbon'},
+    'proj-gmail': {kind:'Project', title:'Gmail Invoice Extraction Pipeline', dates:'', bullets:[
+      'Serverless, event-driven pipeline on GCP: Pub/Sub, Cloud Run, Gemini extraction, Firestore storage.',
+      'Incremental sync via a Cloud Storage–backed Gmail historyId watermark; Secret Manager credentials per invocation.',
+      'Real-time HTML dashboard visualizing extracted invoice data, no frontend build pipeline.'], hasImage:true, icon:'doc'},
+    'proj-phoenix': {kind:'Project', title:'Project Phoenix — Intelligent Systems Club', dates:'', bullets:[
+      'Computer-vision component for an autonomous racecar\'s road-line detection and path tracking.',
+      'Worked with YOLO12 for image segmentation; annotated training data for the CV pipeline.'], icon:'target'},
+    'proj-churn': {kind:'Project', title:'Telco Customer Churn Prediction', dates:'', bullets:[
+      'XGBoost, Random Forest, and ANN models; ANN reached 88% recall on positive churn cases.',
+      'Web app for real-time churn predictions from entered customer data.'], icon:'network'},
+    'proj-genre': {kind:'Project', title:'Music Genre Detection', dates:'', bullets:[
+      'CNN for genre classification using MFCC features on the GTZAN dataset — 84.8% test accuracy.',
+      'Optimized the processing pipeline, cutting compute time by ~25ms.'], icon:'wave'},
+    'proj-spam': {kind:'Project', title:'Email Spam Detection', dates:'', bullets:[
+      'Text vectorization + Multinomial Naive Bayes on the Enron-Spam dataset — 99.32% test accuracy.'], icon:'mail'},
+  };
+
+  const ICONS = {
+    building: '<path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/>',
+    cap: '<path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-5.5"/>',
+    ribbon: '<circle cx="12" cy="8" r="5"/><path d="m8.5 12.5-2 8 5.5-3 5.5 3-2-8"/>',
+    doc: 'IMG',
+    target: '<path d="M4 4h4M4 4v4M20 4h-4M20 4v4M4 20h4M4 20v-4M20 20h-4M20 20v-4"/><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/>',
+    network: '<circle cx="5" cy="6" r="1.8" fill="currentColor" stroke="none"/><circle cx="5" cy="18" r="1.8" fill="currentColor" stroke="none"/><circle cx="13" cy="12" r="1.8" fill="currentColor" stroke="none"/><circle cx="20" cy="6" r="1.8" fill="currentColor" stroke="none"/><circle cx="20" cy="18" r="1.8" fill="currentColor" stroke="none"/><path d="M5 6l8 6M5 18l8-6M13 12l7-6M13 12l7 6"/>',
+    wave: '<rect x="2" y="10" width="2.4" height="4" fill="currentColor" stroke="none"/><rect x="6" y="6" width="2.4" height="12" fill="currentColor" stroke="none"/><rect x="10" y="2" width="2.4" height="20" fill="currentColor" stroke="none"/><rect x="14" y="7" width="2.4" height="10" fill="currentColor" stroke="none"/><rect x="18" y="10" width="2.4" height="4" fill="currentColor" stroke="none"/>',
+    mail: '<path d="M3 5h18v14H3V5Zm0 0 9 7 9-7"/>',
+  };
+
+  const backdrop = document.getElementById('modalBackdrop');
+  const modalBox = document.getElementById('modalBox');
+
+  function openModal(html){ modalBox.innerHTML = html; backdrop.hidden = false; }
+  function closeModal(){ backdrop.hidden = true; }
+  backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function renderFig(entry){
+    const hasImage = !!entry.hasImage;
+    const iconSvg = entry.icon === 'doc'
+      ? '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm1 3v10h14V7l-7 4.5L5 7Zm.8-1 6.2 4 6.2-4H5.8Z"/></svg>'
+      : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">${ICONS[entry.icon] || ''}</svg>`;
+    return `<div class="modal-fig ${hasImage ? 'has-image' : 'no-image'}">${iconSvg}<span class="fig-note mono" style="position:absolute;bottom:8px;right:10px;font-size:9.5px;letter-spacing:.06em;${hasImage ? 'color:var(--accent-ink);opacity:.85' : 'color:var(--ink-soft)'}">${hasImage ? 'SAMPLE SCREENSHOT' : 'NO IMAGE YET'}</span><button class="modal-close" aria-label="Close">✕</button></div>`;
+  }
+
+  document.querySelectorAll('[data-modal]').forEach(el => {
+    el.addEventListener('click', () => {
+      const entry = MODALS[el.getAttribute('data-modal')];
+      if (!entry) return;
+      const bullets = entry.bullets.map(b => `<li>${b}</li>`).join('');
+      openModal(`
+        ${renderFig(entry)}
+        <div class="modal-body">
+          <div class="modal-kind cap">${entry.kind}</div>
+          <div class="modal-title">${entry.title}</div>
+          ${entry.org ? `<div class="modal-org">${entry.org}</div>` : ''}
+          ${entry.dates ? `<div class="modal-dates">${entry.dates}</div>` : ''}
+          <ul>${bullets}</ul>
+        </div>
+      `);
+      modalBox.querySelector('.modal-close').addEventListener('click', closeModal);
+    });
+  });
+
+  document.querySelectorAll('[data-skill]').forEach(el => {
+    el.addEventListener('click', () => {
+      const skill = el.getAttribute('data-skill');
+      openModal(`
+        <div class="modal-fig no-image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg><button class="modal-close" aria-label="Close">✕</button></div>
+        <div class="modal-body">
+          <div class="modal-kind cap">Skill</div>
+          <div class="modal-title">${skill}</div>
+          <ul><li>Used in: — add your notes here —</li><li>Learned via: — add your notes here —</li></ul>
+          <div class="template-note">Template popup — rewrite this content once the page is built.</div>
+        </div>
+      `);
+      modalBox.querySelector('.modal-close').addEventListener('click', closeModal);
+    });
+  });
+
+  // timeline: shared time axis, education/certs left, experience right
+  const NOW = [2026, 9];
+  const AXIS_HEIGHT = 760;
+  const BAR_W = 205, LANE_GAP = 8;
+  const ym = ([y, m]) => y * 12 + m;
+
+  const EDU_ITEMS = [
+    { id: 'ed-sydney', name: 'University of Sydney — B.E. Hons', tag: 'DEGREE', start: [2018, 7], end: [2022, 12], color: '--edu1' },
+    { id: 'cr-coursera', name: 'Coursera: Stanford ML', tag: 'CERT', start: [2023, 11], end: [2024, 1], color: '--cert1' },
+    { id: 'cr-mit', name: 'MIT Professional Education', tag: 'CERT', start: [2024, 1], end: [2024, 4], color: '--cert2' },
+    { id: 'ed-umich', name: 'Univ. of Michigan–Dearborn — M.S. AI', tag: 'DEGREE', start: [2024, 8], end: [2026, 5], color: '--edu2' },
+    { id: 'cr-adk', name: 'Google ADK — Udemy', tag: 'CERT', start: [2026, 3], end: [2026, 4], color: '--cert3' },
+  ];
+  const EDU_POINTS = [
+    { id: 'cr-hackathon', name: 'Visual AI Hackathon — 1st Place', date: [2025, 1] },
+  ];
+  const XP_ITEMS = [
+    { id: 'xp-exponential', name: 'Exponential Digital Solutions', tag: 'ROLE', start: [2021, 3], end: [2021, 5], color: '--xp1' },
+    { id: 'xp-algurg', name: 'Al Gurg Automation', tag: 'ROLE', start: [2021, 12], end: [2022, 2], color: '--xp1' },
+    { id: 'xp-eastwest', name: 'East & West Robotics', tag: 'ROLE', start: [2022, 12], end: [2023, 12], color: '--xp1' },
+    { id: 'xp-miracle', name: 'Miracle Software Systems', tag: 'ROLE', start: [2026, 6], end: NOW, ongoing: true, color: '--xp1' },
+  ];
+
+  const allMonths = [...EDU_ITEMS.map(i => ym(i.start)), ...XP_ITEMS.map(i => ym(i.start)), ym(NOW)];
+  const MIN_M = Math.min(...allMonths) - 2;
+  const MAX_M = Math.max(...allMonths) + 2;
+  const SPAN = MAX_M - MIN_M;
+  const yToPx = (monthsVal) => ((monthsVal - MIN_M) / SPAN) * AXIS_HEIGHT;
+
+  function assignLanes(items) {
+    const sorted = [...items].sort((a, b) => ym(a.start) - ym(b.start));
+    const laneEnds = [];
+    return sorted.map(item => {
+      const s = ym(item.start), e = ym(item.end);
+      let lane = laneEnds.findIndex(end => end <= s);
+      if (lane === -1) { lane = laneEnds.length; laneEnds.push(e); }
+      else { laneEnds[lane] = e; }
+      return { ...item, lane };
+    });
+  }
+
+  function fmtDate([y, m]) {
+    const names = ['', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    return `${names[m]} ${y}`;
+  }
+
+  function renderColumn(container, items, side) {
+    const laned = assignLanes(items);
+    laned.forEach(item => {
+      const top = yToPx(ym(item.start));
+      const height = Math.max(yToPx(ym(item.end)) - top, 34);
+      const bar = document.createElement('button');
+      bar.className = 'tl-bar interactive' + (item.est ? ' tl-est' : '');
+      bar.style.setProperty('--bar-color', `var(${item.color})`);
+      bar.style.top = top + 'px';
+      bar.style.height = height + 'px';
+      bar.style.width = BAR_W + 'px';
+      bar.style[side] = (item.lane * (BAR_W + LANE_GAP)) + 'px';
+      bar.setAttribute('data-modal', item.id);
+      const endLabel = item.ongoing ? 'PRESENT' : fmtDate(item.end);
+      bar.innerHTML = `<span class="tl-tag">${item.tag}</span><span class="tl-name">${item.name}</span><span class="tl-span">${fmtDate(item.start)} – ${endLabel}</span>`;
+      container.appendChild(bar);
+    });
+  }
+
+  function renderPoints(container, points, side) {
+    points.forEach(p => {
+      const top = yToPx(ym(p.date));
+      const dot = document.createElement('button');
+      dot.className = 'tl-point interactive';
+      dot.style.top = top + 'px';
+      dot.setAttribute('data-modal', p.id);
+      dot.title = p.name;
+      container.appendChild(dot);
+    });
+  }
+
+  const eduLanes = document.getElementById('eduLanes');
+  const xpLanes = document.getElementById('xpLanes');
+  renderColumn(eduLanes, EDU_ITEMS, 'right');
+  renderPoints(eduLanes, EDU_POINTS, 'right');
+  renderColumn(xpLanes, XP_ITEMS, 'left');
+
+  const axisCol = document.getElementById('axisCol');
+  for (let y = Math.ceil(MIN_M / 12) * 12; y <= MAX_M; y += 12) {
+    const tick = document.createElement('div');
+    tick.className = 'tl-tick';
+    tick.style.top = yToPx(y) + 'px';
+    tick.textContent = Math.floor(y / 12);
+    axisCol.appendChild(tick);
+  }
+  const nowLine = document.createElement('div');
+  nowLine.className = 'tl-now';
+  nowLine.style.top = yToPx(ym(NOW)) + 'px';
+  axisCol.appendChild(nowLine);
+  const nowLabel = document.createElement('div');
+  nowLabel.className = 'tl-now-label mono';
+  nowLabel.style.top = yToPx(ym(NOW)) + 'px';
+  nowLabel.textContent = 'NOW';
+  axisCol.appendChild(nowLabel);
+
+  // re-bind modal openers for the timeline bars/points created above
+  document.querySelectorAll('#eduLanes [data-modal], #xpLanes [data-modal]').forEach(el => {
+    el.addEventListener('click', () => {
+      const entry = MODALS[el.getAttribute('data-modal')];
+      if (!entry) return;
+      const bullets = entry.bullets.map(b => `<li>${b}</li>`).join('');
+      openModal(`
+        ${renderFig(entry)}
+        <div class="modal-body">
+          <div class="modal-kind cap">${entry.kind}</div>
+          <div class="modal-title">${entry.title}</div>
+          ${entry.org ? `<div class="modal-org">${entry.org}</div>` : ''}
+          ${entry.dates ? `<div class="modal-dates">${entry.dates}</div>` : ''}
+          <ul>${bullets}</ul>
+        </div>
+      `);
+      modalBox.querySelector('.modal-close').addEventListener('click', closeModal);
+    });
+  });
+
+  // scrollspy
+  const tabs = [...document.querySelectorAll('.tab')];
+  const sections = tabs.map(t => document.getElementById(t.dataset.target));
+  const sheetIndicator = document.getElementById('sheetIndicator');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        const id = entry.target.id;
+        tabs.forEach(t => t.removeAttribute('aria-current'));
+        const idx = sections.findIndex(s => s.id === id);
+        tabs[idx].setAttribute('aria-current', 'true');
+        sheetIndicator.textContent = `${idx + 1} OF ${tabs.length}`;
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => io.observe(s));
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    document.getElementById(tab.dataset.target).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+
+  const agentToggle = document.getElementById('agentToggle');
+  const agentPanel = document.getElementById('agentPanel');
+  agentToggle.addEventListener('click', () => { agentPanel.hidden = !agentPanel.hidden; });
+</script>

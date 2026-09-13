@@ -1,0 +1,19 @@
+Resume/
+
+# dependencies / build output
+node_modules/
+dist/
+build/
+
+# secrets — Gemini API key and other local/dev credentials
+.env
+.env.local
+.env.*.local
+.dev.vars
+
+# Cloudflare Workers (Wrangler) local state
+.wrangler/
+
+# editor / OS cruft
+.DS_Store
+*.log
