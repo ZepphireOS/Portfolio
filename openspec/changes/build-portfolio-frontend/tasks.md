@@ -6,16 +6,16 @@
 
 ## 2. Project Scaffold
 
-- [ ] 2.1 Scaffold a Vite + React + TypeScript project, verified by `npm run dev` serving a default page locally
-- [ ] 2.2 Install and configure Tailwind CSS, verified by a Tailwind utility class rendering correctly on the default page
-- [ ] 2.3 Initialize shadcn/ui for the Vite setup and add the initial component set needed (Dialog/Popover for the shared popup, Card), verified by importing and rendering one shadcn component without errors
-- [ ] 2.4 Port tbakerx's `useNavObserver` Intersection-Observer scrollspy hook (plain React, not Next.js-specific) into the Vite app, verified by a minimal test page highlighting the correct nav item while scrolling
+- [x] 2.1 Scaffold a Vite + React + TypeScript project, verified by `npm run dev` serving a default page locally
+- [x] 2.2 Install and configure Tailwind CSS, verified by a Tailwind utility class rendering correctly on the default page
+- [x] 2.3 Initialize shadcn/ui for the Vite setup and add the initial component set needed (Dialog/Popover for the shared popup, Card), verified by importing and rendering one shadcn component without errors
+- [x] 2.4 Port tbakerx's `useNavObserver` Intersection-Observer scrollspy hook (plain React, not Next.js-specific) into the Vite app, verified by a minimal test page highlighting the correct nav item while scrolling
 
 ## 3. Content Model
 
-- [ ] 3.1 Define structured data types/files for About (bio, contact links) and Skills (name, category, and optional usage/learned-via notes), verified by TypeScript compiling against sample entries
-- [ ] 3.2 Define structured data types/files for Timeline entries (`kind`: role/degree/certificate/event, `start`, `end` or ongoing flag, org, bullets), verified against the same real dates used in the storyboard
-- [ ] 3.3 Define structured data types/files for Project entries (title, description, optional link, optional image, category icon fallback), verified by TypeScript compiling against sample entries
+- [x] 3.1 Define structured data types/files for About (bio, contact links) and Skills (name, category, and optional usage/learned-via notes), verified by TypeScript compiling against sample entries
+- [x] 3.2 Define structured data types/files for Timeline entries (`kind`: role/degree/certificate/event, `start`, `end` or ongoing flag, org, bullets), verified against the same real dates used in the storyboard
+- [x] 3.3 Define structured data types/files for Project entries (title, description, optional link, optional image, category icon fallback), verified by TypeScript compiling against sample entries
 - [ ] 3.4 Populate all data files with the user's actual resume and project content from task 1.2, verified by content rendering correctly in each section
 
 ## 4. Sections & Scroll Navigation
