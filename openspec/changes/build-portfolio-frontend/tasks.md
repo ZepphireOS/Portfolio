@@ -1,8 +1,8 @@
 ## 1. Template & Content Kickoff
 
-- [ ] 1.1 Review `examples/storyboard.html` in a browser together with the user as the structural/interaction reference (not visual reference — palette/type are still open), verified by explicit user confirmation before scaffolding begins
-- [ ] 1.2 Collect the user's master resume (and any initial project samples/images) and verify the raw content is available locally for transcription into data files
-- [ ] 1.3 Confirm the resume-to-data-file transcription approach with the user (Claude transcribes vs. user fills in directly), verified by explicit user confirmation
+- [x] 1.1 Review `examples/storyboard.html` in a browser together with the user as the structural/interaction reference (not visual reference — palette/type are still open), verified by explicit user confirmation before scaffolding begins
+- [x] 1.2 Collect the user's master resume (and any initial project samples/images) and verify the raw content is available locally for transcription into data files
+- [x] 1.3 Confirm the resume-to-data-file transcription approach with the user (Claude transcribes vs. user fills in directly), verified by explicit user confirmation
 
 ## 2. Project Scaffold
 
@@ -32,10 +32,14 @@
 
 ## 6. Timeline
 
-- [ ] 6.1 Implement the two-sided, date-proportional Timeline layout (education/certifications left, experience right, shared time axis with year ticks and a "present" marker), verified against the real dates from `examples/storyboard.html`
-- [ ] 6.2 Port the overlap-lane assignment algorithm from the storyboard (`assignLanes`), verified by confirming the known overlapping pair (the Udemy ADK certificate and the still-in-progress Master's degree) render in separate lanes with distinct colors
+- [ ] 6.1 Implement the two-sided, date-proportional Timeline layout (education/certifications left, experience right, shared time axis with year ticks and a "present" marker) inside a bounded viewport, positioned from a time-scale model (`pxPerMonth` + offset) with no minimum bar height, verified against the real dates from `examples/storyboard.html`
+- [ ] 6.2 Port the N-column overlap assignment algorithm from the storyboard (`assignLanes`), verified by the known overlapping pair (the Udemy ADK certificate and the still-in-progress Master's degree) rendering in separate columns with distinct colors, and by a synthetic three-way overlap rendering three columns with no bar overlapping another
 - [ ] 6.3 Implement the one-day-event point marker (for entries with no end date span), verified by the hackathon entry rendering as a point rather than a bar
-- [ ] 6.4 Implement the Timeline's mobile fallback (single-column stack when the dual-axis layout won't fit), verified at a mobile viewport width
+- [ ] 6.4 Implement zoom limits (min = whole range fits the viewport, max = fixed cap) and zoom-in/zoom-out buttons at the Timeline's top-right, verified by button clicks changing entry lengths but not widths, zooming around the viewport center, and each button disabling at its limit
+- [ ] 6.5 Implement trackpad pinch zoom via `@use-gesture/react`, verified in Chromium, Firefox, and Safari by pinching over the Timeline zooming it around the pointer without zooming the browser page
+- [ ] 6.6 Implement wheel and drag panning, verified by: wheel panning the Timeline while zoomed in; wheel scrolling the page at minimum zoom and once panned to an edge; drag panning with the pointer; a drag not opening a popup while a click still does; and panning staying bounded between the earliest entry and the present marker
+- [ ] 6.7 Implement adaptive entry labels (full text / title only / none, chosen from rendered height), verified by zooming out step by step and seeing each entry go full → title-only → no text with no partially clipped text, and a no-text entry still opening its popup and exposing an accessible name
+- [ ] 6.8 Implement the Timeline's mobile fallback (single-column stack when the dual-axis layout won't fit, no zoom/pan), verified at a mobile viewport width
 
 ## 7. Projects
 

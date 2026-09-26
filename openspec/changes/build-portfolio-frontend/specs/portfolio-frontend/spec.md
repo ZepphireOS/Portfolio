@@ -67,9 +67,51 @@ The system SHALL present work experience on one side of a shared, dated timeline
 - **WHEN** a Timeline entry has no end date (an ongoing role)
 - **THEN** the system renders it extending to the present, distinguishable from entries with a definite end date
 
-#### Scenario: Overlapping entries remain distinguishable
-- **WHEN** two entries on the same side of the timeline overlap in time
-- **THEN** the system renders them so both remain individually readable (e.g., without one fully obscuring the other)
+#### Scenario: Overlapping entries occupy separate columns
+- **WHEN** two or more entries on the same side of the timeline overlap in time
+- **THEN** each is placed in its own column beside the others so that no entry overlaps or obscures another, and an entry that overlaps nothing reuses the innermost free column
+
+### Requirement: Zoomable, Pannable Timeline Viewport
+The system SHALL render the dual-axis Timeline inside a bounded viewport whose time scale can be zoomed and panned. Zooming SHALL change every entry's vertical length in proportion to the time scale and SHALL NOT change entry widths. At the minimum zoom level the entire timeline SHALL fit within the viewport. This requirement applies to the dual-axis layout; the narrow-viewport single-column fallback is not required to support zoom or pan.
+
+#### Scenario: Trackpad pinch zooms the timeline
+- **WHEN** a visitor pinches on a trackpad over the Timeline
+- **THEN** the time scale zooms in or out anchored at the pointer position, entries grow or shrink in length only, and the browser page itself does not zoom
+
+#### Scenario: Zoom buttons
+- **WHEN** a visitor selects the zoom-in or zoom-out control at the top-right of the Timeline
+- **THEN** the time scale zooms by a fixed step anchored at the viewport's center, and each control is disabled at its respective zoom limit
+
+#### Scenario: Wheel pans when zoomed
+- **WHEN** the Timeline is zoomed in and a visitor scrolls the mouse wheel over it
+- **THEN** the Timeline pans up or down in the scroll direction instead of the page scrolling
+
+#### Scenario: Drag pans when zoomed
+- **WHEN** the Timeline is zoomed in and a visitor drags within it
+- **THEN** the Timeline pans with the pointer, and releasing the drag does not open an entry popup
+
+#### Scenario: Page scroll is not trapped
+- **WHEN** the Timeline is at minimum zoom, or is already panned to its limit in the scroll direction
+- **THEN** mouse-wheel scrolling scrolls the page normally
+
+#### Scenario: Pan limits
+- **WHEN** a visitor pans the Timeline
+- **THEN** the view stays bounded between the earliest entry and the present marker
+
+### Requirement: Adaptive Timeline Entry Labels
+The system SHALL show a Timeline entry's text only to the extent that it fits within the entry's rendered length at the current zoom, and SHALL NOT show partially clipped text.
+
+#### Scenario: All text fits
+- **WHEN** an entry's rendered length can hold its title and secondary details (organization, dates)
+- **THEN** the entry shows the title and the secondary details
+
+#### Scenario: Only the title fits
+- **WHEN** an entry's rendered length can hold its title but not its secondary details
+- **THEN** the entry shows only its title, and the secondary details reappear once zooming lengthens the entry enough to hold them
+
+#### Scenario: No text fits
+- **WHEN** an entry's rendered length cannot hold even its title
+- **THEN** the entry shows no text, remains visible and activatable (opening its full-detail popup), and retains an accessible name
 
 ### Requirement: Contact Links Without Sensitive Details
 The system SHALL present contact links (at minimum: professional profile and email) as part of the About section, and SHALL NOT display the user's phone number or physical location.
