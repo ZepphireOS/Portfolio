@@ -37,9 +37,10 @@
 - [ ] 6.3 Implement the one-day-event point marker (for entries with no end date span), verified by the hackathon entry rendering as a point rather than a bar
 - [ ] 6.4 Implement zoom limits (min = whole range fits the viewport, max = fixed cap) and zoom-in/zoom-out buttons at the Timeline's top-right, verified by button clicks changing entry lengths but not widths, zooming around the viewport center, and each button disabling at its limit
 - [ ] 6.5 Implement trackpad pinch zoom via `@use-gesture/react`, verified in Chromium, Firefox, and Safari by pinching over the Timeline zooming it around the pointer without zooming the browser page
-- [ ] 6.6 Implement wheel and drag panning, verified by: wheel panning the Timeline while zoomed in; wheel scrolling the page at minimum zoom and once panned to an edge; drag panning with the pointer; a drag not opening a popup while a click still does; and panning staying bounded between the earliest entry and the present marker
+- [ ] 6.6 Implement wheel and drag panning with edge handling, verified by: wheel panning the Timeline while zoomed in; a trackpad flick's momentum stopping at a pan edge without scrolling the page; a new or continued scroll at that edge scrolling the page; a notched mouse wheel at the edge scrolling the page; wheel scrolling the page at minimum zoom; drag panning with the pointer; a drag not opening a popup while a click still does; and panning staying bounded between the earliest entry and the present marker
 - [ ] 6.7 Implement adaptive entry labels (full text / title only / none, chosen from rendered height), verified by zooming out step by step and seeing each entry go full → title-only → no text with no partially clipped text, and a no-text entry still opening its popup and exposing an accessible name
-- [ ] 6.8 Implement the Timeline's mobile fallback (single-column stack when the dual-axis layout won't fit, no zoom/pan), verified at a mobile viewport width
+- [ ] 6.8 Implement touch handling at dual-axis widths, verified on a touch device or emulator by: a drag panning only while zoomed in, a flick's momentum stopping at the edge, a fresh drag at the edge scrolling the page, a drag at minimum zoom scrolling the page, and the zoom buttons working
+- [ ] 6.9 Implement the Timeline's mobile fallback (single-column stack when the dual-axis layout won't fit, no zoom/pan), verified at a mobile viewport width
 
 ## 7. Projects
 

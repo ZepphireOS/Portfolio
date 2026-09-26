@@ -61,7 +61,7 @@ The system SHALL present work experience on one side of a shared, dated timeline
 
 #### Scenario: Entry duration is visible
 - **WHEN** a Timeline entry has a defined start and end date
-- **THEN** its rendered span reflects both dates, and the dates themselves are shown as text
+- **THEN** its rendered span reflects both dates, and the dates are shown as text on the entry whenever they fit (per Adaptive Timeline Entry Labels) and always in the entry's detail popup
 
 #### Scenario: Ongoing entry
 - **WHEN** a Timeline entry has no end date (an ongoing role)
@@ -90,9 +90,17 @@ The system SHALL render the dual-axis Timeline inside a bounded viewport whose t
 - **WHEN** the Timeline is zoomed in and a visitor drags within it
 - **THEN** the Timeline pans with the pointer, and releasing the drag does not open an entry popup
 
-#### Scenario: Page scroll is not trapped
-- **WHEN** the Timeline is at minimum zoom, or is already panned to its limit in the scroll direction
-- **THEN** mouse-wheel scrolling scrolls the page normally
+#### Scenario: Momentum stops at the pan edge
+- **WHEN** the Timeline is zoomed in and carry-over momentum from a scroll or flick pans it to its limit
+- **THEN** the Timeline stops at that limit and the leftover momentum does not scroll the page
+
+#### Scenario: Continued scrolling passes to the page
+- **WHEN** the Timeline is at minimum zoom, or a visitor actively scrolls (a new gesture, or continued deliberate scrolling) toward an edge the Timeline is already panned to
+- **THEN** the page scrolls normally
+
+#### Scenario: Touch input at dual-axis widths
+- **WHEN** a visitor on a touch device uses the dual-axis Timeline
+- **THEN** a one-finger drag pans the Timeline only while it is zoomed in, following the same momentum and edge rules; a drag at minimum zoom scrolls the page; and zooming is available through the zoom buttons (touch pinch is not required)
 
 #### Scenario: Pan limits
 - **WHEN** a visitor pans the Timeline
