@@ -20,9 +20,9 @@
 
 ## 4. Sections & Scroll Navigation
 
-- [ ] 4.1 Implement the sticky, scroll-linked nav bar (About/Skills/Timeline/Projects) using the ported scrollspy hook, verified by scrolling the page and confirming the nav highlights the section in view, and by clicking a nav item and confirming a smooth scroll to that section
-- [ ] 4.2 Implement the About section: bio content, photo (with a deliberate non-blank placeholder if no photo is supplied yet), and GitHub/LinkedIn/email icon links — no phone number, no location — verified against the Contact Links Without Sensitive Details scenario
-- [ ] 4.3 Implement the Skills section from the data files, each skill rendered as an interactable element, verified by every skill being clickable
+- [x] 4.1 Implement the sticky, scroll-linked nav bar (About/Skills/Timeline/Projects) using the ported scrollspy hook, verified by scrolling the page and confirming the nav highlights the section in view, and by clicking a nav item and confirming a smooth scroll to that section
+- [x] 4.2 Implement the About section: bio content, photo (with a deliberate non-blank placeholder if no photo is supplied yet), and GitHub/LinkedIn/email icon links — no phone number, no location — verified against the Contact Links Without Sensitive Details scenario
+- [x] 4.3 Implement the Skills section from the data files, each skill rendered as an interactable element, verified by every skill being clickable
 
 ## 5. Shared Popup Component
 

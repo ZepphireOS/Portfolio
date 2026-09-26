@@ -52,6 +52,9 @@ export interface SkillGroup {
   skills: Skill[]
 }
 
+/** Unique key for a skill (names may repeat across categories). */
+export const skillKey = (category: string, skill: Skill) => `${category}/${skill.name}`
+
 // ------------------------------------------------------------- Timeline
 
 /** Which side of the shared time axis an entry sits on. */
