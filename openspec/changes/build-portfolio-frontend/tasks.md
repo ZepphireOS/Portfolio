@@ -26,9 +26,9 @@
 
 ## 5. Shared Popup Component
 
-- [ ] 5.1 Implement one shared modal/popup component used by Skills, Timeline, and Project entries, verified by opening it with different sample content from each of the three sections
-- [ ] 5.2 Implement all three close behaviors (close-control click, outside/backdrop click, Escape key), verified by testing each independently
-- [ ] 5.3 Implement the Skill popup's placeholder usage/learned-via content, clearly marked as a placeholder, verified against the Skill Detail Supports Placeholder Content scenario
+- [x] 5.1 Implement one shared modal/popup component used by Skills, Timeline, and Project entries, verified by opening it with different sample content from each of the three sections
+- [x] 5.2 Implement all three close behaviors (close-control click, outside/backdrop click, Escape key), verified by testing each independently
+- [x] 5.3 Implement the Skill popup's placeholder usage/learned-via content, clearly marked as a placeholder, verified against the Skill Detail Supports Placeholder Content scenario
 
 ## 6. Timeline
 

@@ -29,6 +29,7 @@ export const skillGroups: SkillGroup[] = [
       { name: 'TensorFlow' },
       { name: 'Scikit-Learn' },
       { name: 'Pandas' },
+      { name: 'OpenCV' },
     ],
   },
   {

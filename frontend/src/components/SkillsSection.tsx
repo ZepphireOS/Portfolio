@@ -5,7 +5,7 @@ import { Section } from './Section'
 interface SkillsSectionProps {
   /** Key of the skill whose detail is open, if any. */
   activeKey?: string
-  onSelect: (skill: Skill, category: string) => void
+  onSelect: (skill: Skill, category: string, trigger: HTMLElement) => void
 }
 
 export function SkillsSection({ activeKey, onSelect }: SkillsSectionProps) {
@@ -26,7 +26,7 @@ export function SkillsSection({ activeKey, onSelect }: SkillsSectionProps) {
                       type="button"
                       aria-haspopup="dialog"
                       data-active={key === activeKey || undefined}
-                      onClick={() => onSelect(skill, group.category)}
+                      onClick={(event) => onSelect(skill, group.category, event.currentTarget)}
                       className="cursor-pointer border bg-background px-2.5 py-1 font-mono text-xs transition-[border-color,box-shadow,translate] hover:border-orange-600 hover:shadow-[3px_3px_0_0_var(--border)] focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:outline-none active:translate-x-0.5 active:translate-y-0.5 active:shadow-none data-active:border-orange-600"
                     >
                       {skill.name}

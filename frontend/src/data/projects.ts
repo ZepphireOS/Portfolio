@@ -3,6 +3,20 @@ import type { Project } from './types'
 // Add `images: ['images/projects/<file>']` (files under public/) as screenshots become available.
 export const projects: Project[] = [
   {
+    id: 'proj-robboss',
+    title: 'RobBoss — Spatial Painting Coach',
+    category: 'creative',
+    tags: ['Gemini', 'OpenCV', 'HP Sprout', 'Cloudflare'],
+    description: [
+      'Built at Hack Dearborn 5: Conjure Reality, where it won 1st Place overall and Best Use of Gemini API.',
+      'A spatial painting coach that teaches users to paint a reference image step by step.',
+      'Uses Gemini as a multimodal reasoning engine to break reference images into paintable stages (regions, layer order, color mixing, brush technique) and evaluate the user’s in-progress painting against each goal.',
+      'Integrates HP Sprout’s camera and projector to observe the physical canvas and project region-specific guidance directly onto the workspace, creating a closed observe-reason-guide loop.',
+      'Built with Python, OpenCV, JavaScript, and Cloudflare.',
+    ],
+    link: { label: 'View on Devpost', href: 'https://devpost.com/software/robboss' },
+  },
+  {
     id: 'proj-gmail',
     title: 'Gmail Invoice Extraction Pipeline',
     category: 'pipeline',

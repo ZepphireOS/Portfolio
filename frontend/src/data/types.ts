@@ -80,10 +80,12 @@ export interface TimelineSpan extends TimelineEntryBase {
   end: YearMonth | 'present'
 }
 
-/** A one-day entry (e.g. a hackathon), drawn as a point marker. */
+/** A short entry (e.g. a hackathon), drawn as a point marker at `date`. */
 export interface TimelineEvent extends TimelineEntryBase {
   kind: 'event'
   date: YearMonthDay
+  /** Last day, for events spanning a few days; shown in text, the marker stays at `date`. */
+  endDate?: YearMonthDay
   side: TimelineSide
   /** Label shown in the popup instead of "Event", e.g. "Competition". */
   eventType?: string
@@ -98,7 +100,7 @@ export const sideOf = (entry: TimelineEntry): TimelineSide =>
 // ------------------------------------------------------------- Projects
 
 /** Picks the stand-in icon when a project has no image. Add new categories freely. */
-export type ProjectCategory = 'pipeline' | 'vision' | 'ml' | 'audio' | 'nlp'
+export type ProjectCategory = 'pipeline' | 'vision' | 'ml' | 'audio' | 'nlp' | 'creative'
 
 export interface Project {
   id: string

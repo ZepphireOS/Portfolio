@@ -127,6 +127,23 @@ export const timeline: TimelineEntry[] = [
     ],
   },
   {
+    id: 'ev-hackdearborn5',
+    kind: 'event',
+    eventType: 'Competition',
+    side: 'education',
+    title: 'Hack Dearborn 5: Conjure Reality — 1st Place Overall & Best Use of Gemini API',
+    shortTitle: 'Hack Dearborn 5 — 1st Place',
+    org: 'Hack Dearborn',
+    date: '2026-10-03',
+    endDate: '2026-10-04',
+    bullets: [
+      'Won 1st Place overall and Best Use of Gemini API with RobBoss, a spatial painting coach that teaches users to paint a reference image step by step.',
+      'Used Gemini as a multimodal reasoning engine to break reference images into paintable stages (regions, layer order, color mixing, brush technique) and evaluate the user’s in-progress painting against each goal.',
+      'Integrated HP Sprout’s camera and projector to observe the physical canvas and project region-specific guidance directly onto the workspace, creating a closed observe-reason-guide loop.',
+      'Built with Python, OpenCV, JavaScript, and Cloudflare.',
+    ],
+  },
+  {
     id: 'ev-hackathon',
     kind: 'event',
     eventType: 'Competition',
