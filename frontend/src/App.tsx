@@ -4,17 +4,13 @@ import { DetailDialog } from '@/components/DetailDialog'
 import { NavBar } from '@/components/NavBar'
 import { Section } from '@/components/Section'
 import { SkillsSection } from '@/components/SkillsSection'
+import { TimelineSection } from '@/components/TimelineSection'
 import { about } from '@/data/about'
 import { projects } from '@/data/projects'
-import { timeline } from '@/data/timeline'
 import { skillKey } from '@/data/types'
-import { formatEntryDates, monthIndex } from '@/lib/dates'
 import { type DetailContent, projectDetail, skillDetail, timelineDetail } from '@/lib/details'
 
-// Interim lists (newest first) so every entry can open the popup until sections 6 and 7 build the real layouts.
-const interimTimeline = [...timeline].sort(
-  (a, b) => monthIndex(b.kind === 'event' ? b.date : b.start) - monthIndex(a.kind === 'event' ? a.date : a.start),
-)
+// Interim list so every project can open the popup until section 7 builds the grid.
 const interimButton =
   'w-full cursor-pointer border bg-background px-3 py-2 text-left text-sm transition-colors hover:border-orange-600'
 
@@ -50,23 +46,10 @@ function App() {
               showDetail(skillKey(category, skill), skillDetail(skill, category), trigger)
             }
           />
-          <Section id="timeline">
-            <ul className="grid gap-2">
-              {interimTimeline.map((entry) => (
-                <li key={entry.id}>
-                  <button
-                    type="button"
-                    aria-haspopup="dialog"
-                    onClick={(event) => showDetail(entry.id, timelineDetail(entry), event.currentTarget)}
-                    className={interimButton}
-                  >
-                    <span className="font-medium">{entry.shortTitle ?? entry.title}</span>
-                    <span className="ml-2 font-mono text-xs text-muted-foreground">{formatEntryDates(entry)}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </Section>
+          <TimelineSection
+            activeId={activeKey}
+            onSelect={(entry, trigger) => showDetail(entry.id, timelineDetail(entry), trigger)}
+          />
           <Section id="projects">
             <ul className="grid gap-2">
               {projects.map((project) => (

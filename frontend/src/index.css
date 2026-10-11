@@ -114,6 +114,23 @@
     --sidebar-ring: oklch(0.556 0 0);
 }
 
+/*
+ * Timeline palette: one hue family per entry kind, one shade per overlap column
+ * (column N uses shade N mod 3). Placeholder colours from the storyboard until the colour pass.
+ */
+:root {
+    --tl-degree-0: #356651;
+    --tl-degree-1: #1f6f8b;
+    --tl-degree-2: #4d7a2a;
+    --tl-certificate-0: #7a5ba8;
+    --tl-certificate-1: #a8577a;
+    --tl-certificate-2: #5f6fa0;
+    --tl-role-0: #a5672c;
+    --tl-role-1: #b0483a;
+    --tl-role-2: #7a6a1f;
+    --tl-event: #d9631a;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
